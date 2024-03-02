@@ -1,12 +1,20 @@
 import React, { useState } from "react";
+import SelectDay from "./SelectDay";
+import SelectWeek from "./SelectWeek";
+import "./style.css";
 
 const TimeRange = () => {
   const [selectedOption, setSelectedOption] = useState<string>("day");
 
+  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const selectedValue = e.target.value;
+    setSelectedOption(selectedValue);
+  };
+
   const renderDatePicker = () => {
     switch (selectedOption) {
       case "week":
-        return "week";
+        return <SelectWeek />;
       case "month":
         return;
       case "year":
@@ -15,32 +23,25 @@ const TimeRange = () => {
         return;
 
       default:
-        return "day";
+        return <SelectDay />;
     }
-  };
-
-  const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = e.target.value;
-    setSelectedOption(selectedValue);
   };
 
   return (
     <div>
-      <div>
-        <label htmlFor="timeInterval">Select an option:</label>
-        <select
-          id="timeInterval"
-          name="timeInterval"
-          value={selectedOption}
-          onChange={handleSelectChange}
-        >
-          <option value="day">Day</option>
-          <option value="week">Week</option>
-          <option value="month">Month</option>
-          <option value="year">Year</option>
-          <option value="custom">Custom</option>
-        </select>
-      </div>
+      <select
+        className="mb-8"
+        id="timeInterval"
+        name="timeInterval"
+        value={selectedOption}
+        onChange={handleSelectChange}
+      >
+        <option value="day">Day</option>
+        <option value="week">Week</option>
+        <option value="month">Month</option>
+        <option value="year">Year</option>
+        <option value="custom">Custom</option>
+      </select>
       {renderDatePicker()}
     </div>
   );
