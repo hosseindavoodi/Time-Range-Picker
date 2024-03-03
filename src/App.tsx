@@ -1,4 +1,3 @@
-import "./App.css";
 import TimeRange from "./Components/TimeRange";
 
 function App() {

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import SelectDay from "./SelectDay";
 import SelectWeek from "./SelectWeek";
+import SelectCustomDate from "./SelectCustomDate";
+import SelectMonthYear from "./SelectMonthYear";
 import "./style.css";
 
 const TimeRange = () => {
@@ -16,12 +18,9 @@ const TimeRange = () => {
       case "week":
         return <SelectWeek />;
       case "month":
-        return;
-      case "year":
-        return;
+        return <SelectMonthYear />;
       case "custom":
-        return;
-
+        return <SelectCustomDate />;
       default:
         return <SelectDay />;
     }
@@ -39,7 +38,6 @@ const TimeRange = () => {
         <option value="day">Day</option>
         <option value="week">Week</option>
         <option value="month">Month</option>
-        <option value="year">Year</option>
         <option value="custom">Custom</option>
       </select>
       {renderDatePicker()}
